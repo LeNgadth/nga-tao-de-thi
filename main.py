@@ -1,10 +1,12 @@
 from fastapi import FastAPI, UploadFile, File, Form
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from export_word import tao_file_word_de_thi
 import os
 
 app = FastAPI()
-
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    return "<h3>Ứng dụng Tạo Đề Thi đang hoạt động! Truy cập /docs để sử dụng giao diện API.</h3>"
 @app.post("/api/tao-ma-tran")
 async def tao_ma_tran_de_thi(
     mon_hoc: str = Form(...),
