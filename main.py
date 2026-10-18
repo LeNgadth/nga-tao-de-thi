@@ -40,3 +40,17 @@ async def tao_ma_tran_de_thi(
         filename="De_Thi_CV7991.docx", 
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
+    from fastapi.responses import HTMLResponse
+
+# Thêm route cho trang chủ
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    return """
+    <html>
+        <head><title>Nga Tạo Đề Thi</title></head>
+        <body style="font-family: Arial; text-align: center; margin-top: 50px;">
+            <h2>Ứng dụng Tạo Đề Thi đang hoạt động!</h2>
+            <p>Vui lòng truy cập <a href="/docs">/docs</a> để xem tài liệu API hoặc sử dụng các chức năng của ứng dụng.</p>
+        </body>
+    </html>
+    """
