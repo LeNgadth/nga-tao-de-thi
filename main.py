@@ -6,7 +6,9 @@ import os
 app = FastAPI()
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    return "<h3>Ứng dụng Tạo Đề Thi đang hoạt động! Truy cập /docs để sử dụng giao diện API.</h3>"
+    if os.path.exists("index.html"):
+        return FileResponse("index.html")
+    return "<h3>Không tìm thấy file index.html trong thư mục gốc!</h3>"
 @app.post("/api/tao-ma-tran")
 async def tao_ma_tran_de_thi(
     mon_hoc: str = Form(...),
